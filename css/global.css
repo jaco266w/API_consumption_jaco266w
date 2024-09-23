@@ -104,6 +104,7 @@ article{
         }
     
         div {
+            margin-top: 10px;
             padding: 0px 5px 5px 5px;
 
             p:first-of-type{
@@ -132,10 +133,6 @@ article{
             img{
                 margin-top: 0px;
                 height: 250px;
-            }
-
-            div {
-                margin-top: 10px;
             }
         }
     }
