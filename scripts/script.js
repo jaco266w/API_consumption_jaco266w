@@ -1,15 +1,14 @@
 "use strict";
 
-const nowPlaying_url = 'https://api.themoviedb.org/3/movie/now_playing';
-const popular_url = 'https://api.themoviedb.org/3/movie/popular';
-const topRated_url = 'https://api.themoviedb.org/3/movie/top_rated';
-const upcoming_url = 'https://api.themoviedb.org/3/movie/upcoming';
+import { api_key } from './info.js';
 
-window.addEventListener("load", generateList(nowPlaying_url))
-document.getElementById("nowPlaying").addEventListener("click", (event) => handleButtonClick(event, nowPlaying_url))
-document.getElementById("popular").addEventListener("click", (event) => handleButtonClick(event, popular_url))
-document.getElementById("topRated").addEventListener("click", (event) => handleButtonClick(event, topRated_url))
-document.getElementById("upcoming").addEventListener("click", (event) => handleButtonClick(event, upcoming_url))
+const base_url = (section) => `https://api.themoviedb.org/3/movie/${section}`;
+
+window.addEventListener("load",() => generateList(base_url("now_playing")))
+
+document.querySelectorAll('nav button').forEach(button => {
+    button.addEventListener('click', event => handleButtonClick(event, base_url(event.target.id)));
+});
 
 function handleButtonClick(event, url){
     document.querySelectorAll('nav button').forEach(button => button.classList.remove('active'));
@@ -20,6 +19,7 @@ function handleButtonClick(event, url){
 }
 
 function generateList(url){
+    
 
     const listSection = document.getElementById('list');
     listSection.innerHTML = '';
@@ -29,7 +29,7 @@ function generateList(url){
         method: 'GET',
         headers: {
           accept: 'application/json',
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNzY5MjNlODRmYjFhODdjMDVhZWRlZjZhNzY1YTlkZCIsIm5iZiI6MTcyNzA4NTMwMS42MzQzOTMsInN1YiI6IjY2ZjEzOTUyN2ZmMmJmNTdjZDI2YTBjNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.EqGNCqh2FK4HE8t4ANngbZ0IO84jDTmVuYvjYGDeQHc'
+          Authorization: api_key
         }
       };
       

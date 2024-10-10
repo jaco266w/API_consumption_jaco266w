@@ -2,6 +2,7 @@
     --main-color: rgb(71, 0, 137);
     --secondary-color: blueviolet;
     --third-color: rgb(171, 104, 234);
+    --background-color: rgb(242, 242, 242);
 
     --text-color: aliceblue;
     --border-corner: 10px;
@@ -15,7 +16,7 @@
 }
 
 body{
-    background-color: rgb(242, 242, 242);
+    background-color: var(--background-color);
 
     h1, h2 {
         color: var(--text-color);
